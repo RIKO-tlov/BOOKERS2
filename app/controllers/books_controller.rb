@@ -12,9 +12,10 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
-    @books = Book.all
+    @book = Book.find_by(id: params[:id])
+    @books = @user.books
     @book = Book.new
+    @user = User.find_by(id: @book.user_id)
   end
 
   def edit

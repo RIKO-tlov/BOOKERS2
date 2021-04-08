@@ -1,19 +1,40 @@
+<div class="profile-container">
+  <h2>User info</h2>
+  <div class="image"><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %></div>
+  <table>
+    <tbody>
+      <strong>
+      <tr>
+        <th>name</th>
+        <th><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= @user.introduction %></th>
+      </tr>
+      </strong>
+    </tbody>
+  </table>
+  <% if @user.id == current_user.id %>
+    <p><%= link_to "awesomefont", edit_user_path(@user) %></p>
+  <% end %>
+</div>
 <div>
-  <h1>Books</h1>
+  <h1>Users</h1>
   <table>
     <thead>
       <tr>
+        <th>image</th>
+        <th>name</th>
         <th colspan="1"></th>
-        <th>Title</th>
-        <th>Opinion</th>
       </tr>
     </thead>
     <tbody>
-      <% @books.each do |book| %>
+      <% @users.each do |user| %>
       <tr>
-        <td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %></td>
-        <td><%= book.title %></td><!--titleからshow画面にリンク-->
-        <td><%= book.body %></td>
+        <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %></td>
+        <td><%= user.name %></td><!--titleからshow画面にリンク-->
+        <td><%= link_to "Show", @book.user_id %></td>
       </tr>
       <% end %>
     </tbody>
