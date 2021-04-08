@@ -1,7 +1,11 @@
 <div class="profile-container">
   <h3 class="profile-name"><%= @user.name %></h3>
   <%= image_tag('no_image.jpg') %>
-</div><div>
+  <% if @user.id == current_user.id %>
+    <p><%= link_to "awesomefont", edit_user_path(@user) %></p>
+  <% end %>
+</div>
+<div>
   <h1>Books</h1>
   <table>
     <thead>
