@@ -5,6 +5,17 @@ class UsersController < ApplicationController
      @book = Book.new(user_id: @current_user.id)
   end
 
+  def create
+    @books = Book.all
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    if @book.save
+      redirect_to book_path(@book)
+    else
+      render :index
+    end
+  end
+
 
   def show
      @users = User.all
