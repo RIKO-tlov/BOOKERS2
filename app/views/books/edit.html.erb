@@ -1,29 +1,27 @@
-<div class="form-group">
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
-      <h2>Editing Book</h2>
+      <h1>Editing Book</h1>
       <% if @book.errors.any? %>
         <div class="error-explanation">
-          <p class="cation"><%= @book.errors.count %>errors prohibited this book from being saved:</p>
-        <% @book.errors.full_messages.each do |message| %>
+          <h2 class="cation text-danger"><%= @book.errors.count %>errors prohibited this book from being saved:</h2>
+          <% @book.errors.full_messages.each do |message| %>
           <ul>
-            <li><%= message %></li>
+            <li class="text-danger"><%= message %></li>
           </ul>
         <% end %>
         </div>
       <% end %>
 
       <%= form_with model:@book, local:true do |f| %>
-      <p>Title</p>
-      <p class="btn-block"><%= f.text_field :title %></p>
-      <p>Opinion</p>
-      <p class="btn-block"><%= f.text_area :body %></p>
-      <button class="btn btn-sm type="input" value="update"">Update Book</button>
+      <label for="Title">Title</label>
+      <%= f.text_field :title, autofocus: true, class:"form-control", id:"inputtitle", placeholder:"title" %></p>
+      <label for="opinion">Opinion</label>
+      <%= f.text_area :body, autofocus: true, class:"form-control", id:"inputbody", placeholder:"opinion" %></p>
+      <button class="btn btn-success btn-sm mt-3 mb-2 type="input" value="update"">Update Book</button>
       <% end %>
         <%= link_to "Show", book_path(@book.id) %> | <%= link_to "Back", books_path %>
     </div>
   </div>
-</div>
 </div>
