@@ -2,15 +2,25 @@ class UsersController < ApplicationController
   #before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-     @users = User.all
-     @user = current_user
-     @book = Book.new(user_id: @current_user.id)
+    @users = User.all
+    @user = current_user
+    @book = Book.new(user_id: @current_user.id)
   end
 
   def show
-     @book = Book.new
-     @user = User.find(params[:id])
-     @books = @user.books
+    @book = Book.new
+    @user = User.find(params[:id])
+    @books = @user.books
+  end
+
+  def follows
+    user = User.find(params[:id])
+    @users = user.followeds
+  end
+
+  def followers
+    user = User.find(params[:id])
+    @users = user.followers
   end
 
   def edit
