@@ -10,7 +10,7 @@
       <h1>Book detail</h1>
       <table class="table">
         <tbody>
-          <tr>
+          <tr id="book_<%= @book.id %>">
             <td>
               <%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %><br />
               <p><%= link_to @book.user.name, user_path(@book.user.id) %></p>
@@ -26,7 +26,7 @@
             </td>
             <% else %>
             <td><%= render 'books/favorite', book: @book %></td>
-            <td>コメント数：<%= @book.book_comments.count %></td>
+            <td class="comments-count">コメント数：<%= @book.book_comments.count %></td>
             <% end %>
           </tr>
         </tbody>

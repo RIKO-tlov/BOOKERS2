@@ -31,7 +31,17 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port:                 587,
+    address:              'smtp.gmail.com',
+    domain:               'smtp.gmail.com',
+    user_name:            ENV['WELCOME_MAILER_ADDRESS'], #送信元となるGmailアドレスを記入
+    password:             ENV['WELCOME_MAILER_PASSWORD'], #STEP2で取得するアプリパスワードを記入
+    authentication:       'login',
+    enable_starttls_auto: true
+  }
 
   config.action_mailer.perform_caching = false
 

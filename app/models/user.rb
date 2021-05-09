@@ -23,10 +23,6 @@ class User < ApplicationRecord
     passive_relationships.find_by(followed_id: user.id).present?
   end
 
-  # def following?(user)
-  #   followers.include?(user)
-  # end
-  
   def self.looks(search, word)
     if search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")
@@ -40,14 +36,14 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
-  
+
   include JpPrefecture
   jp_prefecture :prefecture_code
-  
+
   def prefecture_name
     JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
   end
-  
+
   def prefecture_name=(prefecture_name)
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
